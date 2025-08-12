@@ -22,7 +22,7 @@ const params = reactive({
   with: 'roles'
 })
 
-const {$api}: {$api: IApiInterface} = useNuxtApp();
+const {$api}: {$api: IApiInterface} = useNuxtApp()
 
 const getUsers = async () => {
   try {

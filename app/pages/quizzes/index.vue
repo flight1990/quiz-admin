@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {ref} from "vue";
-import {QuizType} from "../../types/moduls/QuizType";
+import {reactive, ref} from "vue";
+import type {QuizType} from "../../types/moduls/QuizType";
+import type {IApiInterface} from "../../types/IApiInterface";
+import {useNuxtApp} from "nuxt/app";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -16,10 +18,28 @@ const headers = [
 
 const loading = ref<boolean>(false)
 const items = ref<QuizType[]>([])
+
+const {$api}: {$api: IApiInterface} = useNuxtApp()
+
+const getQuizzes = async () => {
+  try {
+    loading.value = true
+
+    const {data} = await $api.quiz.getQuizzes()
+    items.value = data
+
+  } catch (e) {
+    console.error(e)
+  } finally {
+    loading.value = false
+  }
+}
+
+getQuizzes()
 </script>
 
 <template>
-  <the-table-wrapper v-slot="{search}">
+  <the-table-wrapper v-slot="{search}" @reload="getQuizzes">
     <v-data-table
         :search="search"
         :headers="headers"
