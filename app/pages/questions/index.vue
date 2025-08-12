@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
 import {ref} from "vue";
-import {QuestionType} from "../../types/QuestionType";
+import {QuestionType} from "../../types/moduls/QuestionType";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},

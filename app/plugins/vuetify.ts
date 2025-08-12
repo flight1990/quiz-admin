@@ -12,6 +12,7 @@ export default defineNuxtPlugin((app) => {
         },
         defaults: {
             VDataTable: {
+                mobileBreakpoint: 'sm',
                 mustSort: true,
                 sortBy: [{key: 'id', order: 'desc'}],
                 striped: 'odd',
