@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type {MenuType} from "../types/MenuType";
+import type {MenuType} from "../types/moduls/MenuType";
 
 export const useMenuStore = defineStore('menu', {
     state: () => ({

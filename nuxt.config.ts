@@ -24,4 +24,9 @@ export default defineNuxtConfig({
       })
     },
   ],
+  runtimeConfig: {
+    public: {
+      api: process.env.REST_API
+    }
+  },
 })

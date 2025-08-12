@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {ref} from "vue";
-import {GuestUserType} from "../../types/GuestUserType";
+import {GuestUserType} from "../../types/moduls/GuestUserType";
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
 
 const headers = [

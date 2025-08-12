@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {defineModel} from "vue"
-import {MenuType} from "../types/MenuType";
+import {MenuType} from "../types/moduls/MenuType";
 
 defineProps<{
   items: MenuType[]
