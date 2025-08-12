@@ -26,7 +26,9 @@ export default defineNuxtConfig({
   ],
   runtimeConfig: {
     public: {
-      api: process.env.REST_API
+      api: process.env.REST_API,
+      client_secret: process.env.CLIENT_SECRET,
+      client_id: process.env.CLIENT_ID
     }
   },
 })

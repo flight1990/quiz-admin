@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import {defineModel} from "vue"
-import {MenuType} from "../types/moduls/MenuType";
+import type {MenuType} from "../types/moduls/MenuType";
 
 defineProps<{
   items: MenuType[]
 }>()
 
-const drawer = defineModel()
+const drawer = defineModel<boolean>()
 </script>
 
 <template>

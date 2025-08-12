@@ -1,5 +1,9 @@
+import TokenModule from "../repository/modules/TokenModule";
 import UnitModule from "../repository/modules/UnitModule";
+import UserModule from "../repository/modules/UserModule";
 
 export interface IApiInterface {
-    unit: UnitModule;
+    token: TokenModule
+    unit: UnitModule
+    user: UserModule
 }

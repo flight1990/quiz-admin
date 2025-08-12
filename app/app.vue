@@ -7,7 +7,7 @@ import {useRoute} from "nuxt/app";
 
 const route = useRoute()
 const menuStore = useMenuStore()
-const drawer = ref<boolean | null>(null)
+const drawer = ref<boolean>(true)
 
 const activeRoute = computed(() => menuStore.items.find(i => i.to.name === route.name))
 
@@ -25,7 +25,7 @@ const activeRoute = computed(() => menuStore.items.find(i => i.to.name === route
 
         <v-main>
           <v-container>
-            <h2>{{ activeRoute.title }}</h2>
+            <h2>{{ activeRoute?.title }}</h2>
 
             <div class="my-4">
               <NuxtPage/>
