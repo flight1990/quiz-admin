@@ -4,6 +4,7 @@ import {reactive, ref} from "vue";
 import type {AnswerType} from "../../types/moduls/AnswerType";
 import type {IApiInterface} from "../../types/IApiInterface";
 import {useNuxtApp} from "nuxt/app";
+import {type IServerApiInterface} from "../../types/IServerApiInterface";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -23,13 +24,13 @@ const params = reactive({
   with: 'guestUser,options,question'
 })
 
-const {$api}: {$api: IApiInterface} = useNuxtApp()
+const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
 
 const getAnswers = async () => {
   try {
     loading.value = true
 
-    const {data} = await $api.answer.getAnswers(params)
+    const {data} = await $serverApi.answer.getAnswers(params)
     items.value = data
 
   } catch (e) {

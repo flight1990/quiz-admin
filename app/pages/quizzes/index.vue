@@ -1,9 +1,10 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {reactive, ref} from "vue";
+import {ref} from "vue";
 import type {QuizType} from "../../types/moduls/QuizType";
 import type {IApiInterface} from "../../types/IApiInterface";
 import {useNuxtApp} from "nuxt/app";
+import {type IServerApiInterface} from "../../types/IServerApiInterface";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -19,13 +20,13 @@ const headers = [
 const loading = ref<boolean>(false)
 const items = ref<QuizType[]>([])
 
-const {$api}: {$api: IApiInterface} = useNuxtApp()
+const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
 
 const getQuizzes = async () => {
   try {
     loading.value = true
 
-    const {data} = await $api.quiz.getQuizzes()
+    const {data} = await $serverApi.quiz.getQuizzes()
     items.value = data
 
   } catch (e) {

@@ -2,8 +2,8 @@
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
 import {reactive, ref} from "vue";
 import type {UserType} from "../../types/moduls/UserType";
-import type {IApiInterface} from "../../types/IApiInterface";
 import {useNuxtApp} from "nuxt/app";
+import {type IServerApiInterface} from "../../types/IServerApiInterface";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -22,13 +22,13 @@ const params = reactive({
   with: 'roles'
 })
 
-const {$api}: {$api: IApiInterface} = useNuxtApp()
+const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
 
 const getUsers = async () => {
   try {
     loading.value = true
 
-    const {data} = await $api.user.getUsers(params)
+    const {data} = await $serverApi.user.getUsers(params)
     items.value = data
 
   } catch (e) {

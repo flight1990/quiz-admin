@@ -4,6 +4,7 @@ import {ref} from "vue";
 import type {UnitType} from "../../types/moduls/UnitType";
 import {useNuxtApp} from "nuxt/app";
 import type {IApiInterface} from "../../types/IApiInterface";
+import {type IServerApiInterface} from "../../types/IServerApiInterface";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -14,13 +15,13 @@ const headers = [
 const loading = ref<boolean>(false)
 const items = ref<UnitType[]>([])
 
-const {$api}: {$api: IApiInterface} = useNuxtApp();
+const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp();
 
 const getUnits = async () => {
   try {
     loading.value = true
 
-    const {data} = await $api.unit.getUnits()
+    const {data} = await $serverApi.unit.getUnits()
     items.value = data
 
   } catch (e) {

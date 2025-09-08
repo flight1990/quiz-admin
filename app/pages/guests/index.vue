@@ -2,8 +2,8 @@
 import {reactive, ref} from "vue";
 import type {GuestUserType} from "../../types/moduls/GuestUserType";
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import type {IApiInterface} from "../../types/IApiInterface";
 import {useNuxtApp} from "nuxt/app";
+import {type IServerApiInterface} from "../../types/IServerApiInterface";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -24,13 +24,13 @@ const params = reactive({
   with: 'unit'
 })
 
-const {$api}: {$api: IApiInterface} = useNuxtApp()
+const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
 
 const getGuests = async () => {
   try {
     loading.value = true
 
-    const {data} = await $api.guestUser.getGuestUsers(params)
+    const {data} = await $serverApi.guestUser.getGuestUsers(params)
     items.value = data
 
   } catch (e) {

@@ -1,13 +1,12 @@
-import HttpFactory from "../factory";
-import type {RestResponseType} from "~/types/RestResponseType";
-import {HttpMethods} from "../../types/HttpMethods";
-import type {UnitType} from "../../types/moduls/UnitType";
+import HttpFactory from "../Factory";
+import type { RestResponseType } from "~/types/RestResponseType";
+import {type UnitType} from "../../types/moduls/UnitType";
+import { HttpMethods } from "~/types/HttpMethods";
 
 export default class UnitModule extends HttpFactory {
-
-    private  RESOURCE = 'api/v1/admin/units'
+    private RESOURCE = "api/units"; // Серверный endpoint Nuxt
 
     public async getUnits(): Promise<RestResponseType<UnitType[]>> {
-        return await this.call(HttpMethods.get, `${this.RESOURCE}`, null)
+        return this.call<RestResponseType<UnitType[]>>(HttpMethods.get, this.RESOURCE);
     }
 }

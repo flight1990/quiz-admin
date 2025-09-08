@@ -4,6 +4,7 @@ import {reactive, ref} from "vue";
 import type {RoleType} from "../../types/moduls/RoleType";
 import type {IApiInterface} from "../../types/IApiInterface";
 import {useNuxtApp} from "nuxt/app";
+import {type IServerApiInterface} from "../../types/IServerApiInterface";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -21,13 +22,13 @@ const params = reactive({
   with: 'permissions'
 })
 
-const {$api}: {$api: IApiInterface} = useNuxtApp()
+const {$serverApi}: {$api: IApiInterface, $serverApi: IServerApiInterface} = useNuxtApp()
 
 const getRoles = async () => {
   try {
     loading.value = true
 
-    const {data} = await $api.role.getRoles(params)
+    const {data} = await $serverApi.role.getRoles(params)
     items.value = data
 
   } catch (e) {

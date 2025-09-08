@@ -1,4 +1,4 @@
-import HttpFactory from "../factory";
+import HttpFactory from "../Factory";
 import {HttpMethods} from "../../types/HttpMethods";
 import type {TokenType} from "../../types/moduls/TokenType";
 

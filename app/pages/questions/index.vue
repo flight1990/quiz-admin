@@ -4,6 +4,7 @@ import {reactive, ref} from "vue";
 import type {QuestionType} from "../../types/moduls/QuestionType";
 import type {IApiInterface} from "../../types/IApiInterface";
 import {useNuxtApp} from "nuxt/app";
+import {type IServerApiInterface} from "../../types/IServerApiInterface";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -21,13 +22,13 @@ const params = reactive({
   with: 'quiz'
 })
 
-const {$api}: {$api: IApiInterface} = useNuxtApp()
+const {$serverApi}: {$api: IApiInterface, $serverApi: IServerApiInterface} = useNuxtApp()
 
 const getQuestions = async () => {
   try {
     loading.value = true
 
-    const {data} = await $api.question.getQuestions(params)
+    const {data} = await $serverApi.question.getQuestions(params)
     items.value = data
 
   } catch (e) {
