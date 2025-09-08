@@ -39,7 +39,6 @@ export const useToken = (): IUseToke => {
         try {
             const {access_token, refresh_token}: TokenType = await $serverApi.token.refresh()
             authStore.login(access_token, refresh_token)
-
         } catch (e) {
             throw e
         } finally {
