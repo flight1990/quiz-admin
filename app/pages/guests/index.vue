@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import {reactive, ref} from "vue";
-import type {GuestUserType} from "../../types/moduls/GuestUserType";
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {useNuxtApp} from "nuxt/app";
-import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {useGuest} from "../../composables/useGuest";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -17,38 +14,17 @@ const headers = [
   {title: '', key: 'actions', sortable: false},
 ]
 
-const loading = ref<boolean>(false)
-const items = ref<GuestUserType[]>([])
+const  {loading, guestUsers, getGuestUsers} = useGuest()
 
-const params = reactive({
-  with: 'unit'
-})
-
-const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
-
-const getGuests = async () => {
-  try {
-    loading.value = true
-
-    const {data} = await $serverApi.guestUser.getGuestUsers(params)
-    items.value = data
-
-  } catch (e) {
-    console.error(e)
-  } finally {
-    loading.value = false
-  }
-}
-
-getGuests()
+getGuestUsers()
 </script>
 
 <template>
-  <the-table-wrapper v-slot="{search}" @reload="getGuests">
+  <the-table-wrapper v-slot="{search}" @reload="getGuestUsers">
     <v-data-table
         :search="search"
         :headers="headers"
-        :items="items"
+        :items="guestUsers"
         :loading="loading"
     >
 

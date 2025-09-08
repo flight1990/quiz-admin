@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {ref} from "vue";
-import type {QuizType} from "../../types/moduls/QuizType";
-import type {IApiInterface} from "../../types/IApiInterface";
-import {useNuxtApp} from "nuxt/app";
-import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {useQuiz} from "../../composables/useQuiz";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -17,24 +13,7 @@ const headers = [
   {title: 'Операции', key: 'actions', sortable: false},
 ]
 
-const loading = ref<boolean>(false)
-const items = ref<QuizType[]>([])
-
-const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
-
-const getQuizzes = async () => {
-  try {
-    loading.value = true
-
-    const {data} = await $serverApi.quiz.getQuizzes()
-    items.value = data
-
-  } catch (e) {
-    console.error(e)
-  } finally {
-    loading.value = false
-  }
-}
+const {loading, quizzes, getQuizzes} = useQuiz()
 
 getQuizzes()
 </script>
@@ -44,7 +23,7 @@ getQuizzes()
     <v-data-table
         :search="search"
         :headers="headers"
-        :items="items"
+        :items="quizzes"
         :loading="loading"
     >
 

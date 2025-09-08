@@ -58,12 +58,6 @@ export const useMenuStore = defineStore('menu', {
                 link: true,
                 to: { name: 'guests' },
             },
-            {
-                title: 'Завершенные викторины',
-                prependIcon: 'mdi-playlist-check',
-                link: true,
-                to: { name: 'quiz-user' },
-            },
         ] as MenuType[],
     }),
 })

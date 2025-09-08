@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {ref} from "vue";
-import type {UnitType} from "../../types/moduls/UnitType";
-import {useNuxtApp} from "nuxt/app";
-import type {IApiInterface} from "../../types/IApiInterface";
-import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {useUnit} from "../../composables/useUnit";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -12,24 +8,8 @@ const headers = [
   {title: 'Операции', key: 'actions', sortable: false},
 ]
 
-const loading = ref<boolean>(false)
-const items = ref<UnitType[]>([])
+const {loading, units, getUnits} = useUnit()
 
-const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp();
-
-const getUnits = async () => {
-  try {
-    loading.value = true
-
-    const {data} = await $serverApi.unit.getUnits()
-    items.value = data
-
-  } catch (e) {
-    console.error(e)
-  } finally {
-    loading.value = false
-  }
-}
 getUnits()
 </script>
 
@@ -38,7 +18,7 @@ getUnits()
     <v-data-table
         :search="search"
         :headers="headers"
-        :items="items"
+        :items="units"
         :loading="loading"
     >
 

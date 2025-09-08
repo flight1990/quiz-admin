@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {reactive, ref} from "vue";
-import type {AnswerType} from "../../types/moduls/AnswerType";
-import type {IApiInterface} from "../../types/IApiInterface";
-import {useNuxtApp} from "nuxt/app";
-import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {useAnswer} from "../../composables/useAnswer";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -17,28 +13,7 @@ const headers = [
   {title: 'Операции', key: 'actions', sortable: false},
 ]
 
-const loading = ref<boolean>(false)
-const items = ref<AnswerType[]>([])
-
-const params = reactive({
-  with: 'guestUser,options,question'
-})
-
-const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
-
-const getAnswers = async () => {
-  try {
-    loading.value = true
-
-    const {data} = await $serverApi.answer.getAnswers(params)
-    items.value = data
-
-  } catch (e) {
-    console.error(e)
-  } finally {
-    loading.value = false
-  }
-}
+const {loading, answers, getAnswers} = useAnswer()
 
 getAnswers()
 </script>
@@ -48,7 +23,7 @@ getAnswers()
     <v-data-table
         :search="search"
         :headers="headers"
-        :items="items"
+        :items="answers"
         :loading="loading"
     >
 

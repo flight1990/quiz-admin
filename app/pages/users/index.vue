@@ -1,9 +1,6 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {reactive, ref} from "vue";
-import type {UserType} from "../../types/moduls/UserType";
-import {useNuxtApp} from "nuxt/app";
-import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {useUser} from "../../composables/useUser";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -15,28 +12,7 @@ const headers = [
   {title: 'Операции', key: 'actions', sortable: false},
 ]
 
-const loading = ref<boolean>(false)
-const items = ref<UserType[]>([])
-
-const params = reactive({
-  with: 'roles'
-})
-
-const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
-
-const getUsers = async () => {
-  try {
-    loading.value = true
-
-    const {data} = await $serverApi.user.getUsers(params)
-    items.value = data
-
-  } catch (e) {
-    console.error(e)
-  } finally {
-    loading.value = false
-  }
-}
+const {loading, users, getUsers} = useUser()
 
 getUsers()
 </script>
@@ -46,7 +22,7 @@ getUsers()
     <v-data-table
         :search="search"
         :headers="headers"
-        :items="items"
+        :items="users"
         :loading="loading"
     >
 

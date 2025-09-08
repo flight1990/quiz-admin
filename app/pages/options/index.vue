@@ -1,10 +1,6 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
-import {reactive, ref} from "vue";
-import type {OptionType} from "../../types/moduls/OptionType";
-import type {IApiInterface} from "../../types/IApiInterface";
-import {useNuxtApp} from "nuxt/app";
-import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {useOption} from "../../composables/useOption";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -15,28 +11,7 @@ const headers = [
   {title: '', key: 'actions', sortable: false},
 ]
 
-const loading = ref<boolean>(false)
-const items = ref<OptionType[]>([])
-
-const params = reactive({
-  with: 'question'
-})
-
-const {$serverApi}: {$serverApi: IServerApiInterface} = useNuxtApp()
-
-const getOptions = async () => {
-  try {
-    loading.value = true
-
-    const {data} = await $serverApi.option.getOptions(params)
-    items.value = data
-
-  } catch (e) {
-    console.error(e)
-  } finally {
-    loading.value = false
-  }
-}
+const {loading, options, getOptions} = useOption()
 
 getOptions()
 </script>
@@ -46,7 +21,7 @@ getOptions()
     <v-data-table
         :search="search"
         :headers="headers"
-        :items="items"
+        :items="options"
         :loading="loading"
     >
 
