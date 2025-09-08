@@ -30,4 +30,8 @@ export default class TokenModule extends HttpFactory {
             scopes: '*'
         })
     }
+
+    public async logout(): Promise<void> {
+        return await this.call(HttpMethods.delete, `api/token/revoke`)
+    }
 }

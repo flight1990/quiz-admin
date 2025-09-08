@@ -1,5 +1,6 @@
 import { $fetch } from "ofetch";
 import { getCookie, createError, H3Event } from "h3";
+import {navigateTo} from "nuxt/app";
 
 export const apiClient = async <T>(
     event: H3Event,

@@ -10,7 +10,13 @@ import AnswerModule from "../repository/modules/AnswerModule";
 import GuestUserModule from "../repository/modules/GuestUserModule";
 
 export default defineNuxtPlugin((nuxtApp) => {
-    const apiFetcher = $fetch.create({});
+    const apiFetcher = $fetch.create({
+        onResponseError({ response }) {
+            if (response.status === 401) {
+                navigateTo("/login");
+            }
+        }
+    });
 
     const modules: IServerApiInterface = {
         unit: new UnitModule(apiFetcher),

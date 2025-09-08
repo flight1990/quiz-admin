@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import TheForm from "../components/TheForm.vue";
-import {reactive, ref} from "vue";
-import type {IApiInterface} from "../types/IApiInterface";
-import {useNuxtApp} from "nuxt/app";
-import type {TokenType} from "../types/moduls/TokenType";
-import {useAuthStore} from "../stores/authStore";
+import {reactive} from "vue";
+import {useToken} from "../composables/useToken";
 
-const authStore = useAuthStore()
-const processing = ref(false)
-const {$api}: {$api: IApiInterface} = useNuxtApp();
+const {processing, login} = useToken()
 
 const payload = reactive<{
   username: string
@@ -18,22 +13,10 @@ const payload = reactive<{
   password: ''
 })
 
-const getToken = async () => {
-  try {
-    processing.value = true
-    const {access_token, refresh_token}: TokenType = await $api.token.token(payload)
-    authStore.login(access_token, refresh_token)
-  } catch (e) {
-    console.error(e)
-  } finally {
-    processing.value = false
-  }
-}
-
 </script>
 
 <template>
-  <the-form button-title="Авторизация" :processing="processing" @submit="getToken">
+  <the-form button-title="Авторизация" :processing="processing" @submit="login(payload)">
     <v-text-field
       label="Email"
       v-model="payload.username"

@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
 import {useAnswer} from "../../composables/useAnswer";
+import {definePageMeta} from "../../../.nuxt/imports";
+
+definePageMeta({
+  requiresAuth: true,
+});
+
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},

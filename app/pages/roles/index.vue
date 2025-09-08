@@ -5,6 +5,12 @@ import type {RoleType} from "../../types/moduls/RoleType";
 import type {IApiInterface} from "../../types/IApiInterface";
 import {useNuxtApp} from "nuxt/app";
 import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {definePageMeta} from "../../../.nuxt/imports";
+
+definePageMeta({
+  requiresAuth: true,
+});
+
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},

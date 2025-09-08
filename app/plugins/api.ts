@@ -21,7 +21,7 @@ export default defineNuxtPlugin(nuxtApp => {
                 credentials: "include",
             }
 
-            const token = authStore.tokens.accessToken || accessTokenCookie.value;
+            const token = authStore.accessToken || accessTokenCookie.value;
 
             if (token) {
                 // @ts-ignore
