@@ -1,7 +1,6 @@
 import {$fetch} from 'ofetch';
 import type {FetchOptions} from 'ofetch';
 import type {IApiInterface} from "../types/IApiInterface";
-import TokenModule from "../repository/modules/TokenModule";
 
 export default defineNuxtPlugin(nuxtApp => {
     const config = useRuntimeConfig();
@@ -33,7 +32,7 @@ export default defineNuxtPlugin(nuxtApp => {
     const apiFecther = $fetch.create(fetchOptions);
 
     const modules: IApiInterface = {
-        token: new TokenModule(apiFecther),
+
     };
 
     return {
