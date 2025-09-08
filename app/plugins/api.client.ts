@@ -9,6 +9,7 @@ import OptionModule from "../repository/modules/OptionModule";
 import AnswerModule from "../repository/modules/AnswerModule";
 import GuestUserModule from "../repository/modules/GuestUserModule";
 
+
 export default defineNuxtPlugin((nuxtApp) => {
     const apiFetcher = $fetch.create({
         onResponseError({ response }) {

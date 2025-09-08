@@ -7,6 +7,7 @@ import type {TokenType} from "../types/moduls/TokenType";
 interface IUseToke {
     processing: Ref<boolean>
     logout: () => Promise<void>
+    refresh: () => Promise<void>
     login: (payload: { username: string, password: string }) => Promise<void>
 }
 
@@ -32,6 +33,20 @@ export const useToken = (): IUseToke => {
         }
     }
 
+    const refresh = async () => {
+        processing.value = true
+
+        try {
+            const {access_token, refresh_token}: TokenType = await $api.token.refresh()
+            authStore.login(access_token, refresh_token)
+
+        } catch (e) {
+            throw e
+        } finally {
+            processing.value = false
+        }
+    }
+
     const logout = async () => {
         processing.value = true
 
@@ -45,5 +60,5 @@ export const useToken = (): IUseToke => {
         }
     }
 
-    return {logout, login, processing}
+    return {logout, login, processing, refresh}
 }
