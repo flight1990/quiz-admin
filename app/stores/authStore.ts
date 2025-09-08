@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { Ref } from "vue";
-import { navigateTo, useCookie } from "#app";
+import {navigateTo, useCookie} from "nuxt/app";
 
 export const useAuthStore = defineStore("auth", () => {
     const isAuth: Ref<boolean> = ref(false);

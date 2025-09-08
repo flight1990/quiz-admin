@@ -8,6 +8,6 @@ export default class UserModule extends HttpFactory {
     private  RESOURCE = 'api/users'
 
     public async getUsers(params?: {with?: string}): Promise<RestResponseType<UserType[]>> {
-        return await this.call(HttpMethods.get, `${this.RESOURCE}`, null, {params})
+        return await this.call(HttpMethods.get, `${this.RESOURCE}/get-users`, null, {params})
     }
 }

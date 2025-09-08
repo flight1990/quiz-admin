@@ -8,6 +8,6 @@ export default class GuestUserModule extends HttpFactory {
     private  RESOURCE = 'api/guest-users'
 
     public async getGuestUsers(params?: {with?: string}): Promise<RestResponseType<GuestUserType[]>> {
-        return await this.call(HttpMethods.get, `${this.RESOURCE}`, null, {params})
+        return await this.call(HttpMethods.get, `${this.RESOURCE}/get-guest-users`, null, {params})
     }
 }

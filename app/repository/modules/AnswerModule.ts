@@ -8,6 +8,6 @@ export default class AnswerModule extends HttpFactory {
     private  RESOURCE = 'api/answers'
 
     public async getAnswers(params?: {with?: string}): Promise<RestResponseType<AnswerType[]>> {
-        return await this.call(HttpMethods.get, `${this.RESOURCE}`, null, {params})
+        return await this.call(HttpMethods.get, `${this.RESOURCE}/get-answers`, null, {params})
     }
 }

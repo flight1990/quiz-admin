@@ -6,6 +6,7 @@ import RoleModule from "../repository/modules/RoleModule";
 import OptionModule from "../repository/modules/OptionModule";
 import AnswerModule from "../repository/modules/AnswerModule";
 import GuestUserModule from "../repository/modules/GuestUserModule";
+import TokenModule from "../repository/modules/TokenModule";
 
 export interface IServerApiInterface {
     unit: UnitModule
@@ -16,4 +17,5 @@ export interface IServerApiInterface {
     option: OptionModule
     answer: AnswerModule
     guestUser: GuestUserModule
+    token: TokenModule
 }

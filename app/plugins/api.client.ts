@@ -8,6 +8,7 @@ import RoleModule from "../repository/modules/RoleModule";
 import OptionModule from "../repository/modules/OptionModule";
 import AnswerModule from "../repository/modules/AnswerModule";
 import GuestUserModule from "../repository/modules/GuestUserModule";
+import TokenModule from "../repository/modules/TokenModule";
 
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -28,6 +29,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         option: new OptionModule(apiFetcher),
         answer: new AnswerModule(apiFetcher),
         guestUser: new GuestUserModule(apiFetcher),
+        token: new TokenModule(apiFetcher),
     };
 
     return {

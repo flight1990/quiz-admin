@@ -7,6 +7,6 @@ export default class QuizModule extends HttpFactory {
     private  RESOURCE = 'api/quizzes'
 
     public async getQuizzes(params?: {with?: string}): Promise<RestResponseType<QuizType[]>> {
-        return await this.call(HttpMethods.get, `${this.RESOURCE}`, null, {params})
+        return await this.call(HttpMethods.get, `${this.RESOURCE}/get-quizzes`, null, {params})
     }
 }

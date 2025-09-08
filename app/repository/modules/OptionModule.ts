@@ -8,6 +8,6 @@ export default class OptionModule extends HttpFactory {
     private  RESOURCE = 'api/options'
 
     public async getOptions(params?: {with?: string}): Promise<RestResponseType<OptionType[]>> {
-        return await this.call(HttpMethods.get, `${this.RESOURCE}`, null, {params})
+        return await this.call(HttpMethods.get, `${this.RESOURCE}/get-options`, null, {params})
     }
 }
