@@ -26,7 +26,6 @@ export const useUser = (): IUseUser => {
         try {
             const {data} = await $serverApi.user.getUsers(params)
             users.value = data
-
         } catch (e) {
             throw (e)
         } finally {

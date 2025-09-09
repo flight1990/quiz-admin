@@ -1,4 +1,4 @@
-import HttpFactory from "../Factory";
+import HttpFactory from "../RepositoryFactory";
 import type { RestResponseType } from "~/types/RestResponseType";
 import {type UnitType} from "../../types/moduls/UnitType";
 import { HttpMethods } from "~/types/HttpMethods";

@@ -1,4 +1,4 @@
-import HttpFactory from "../Factory";
+import HttpFactory from "../RepositoryFactory";
 import type {RestResponseType} from "~/types/RestResponseType";
 import {HttpMethods} from "../../types/HttpMethods";
 import type {GuestUserType} from "../../types/moduls/GuestUserType";
