@@ -1,5 +1,5 @@
 import { $fetch, type FetchContext, type FetchResponse } from "ofetch";
-import type { IServerApiInterface } from "../types/IServerApiInterface";
+import type { IServerApi } from "../types/IServerApi";
 
 import UnitModule from "../repository/modules/UnitModule";
 import UserModule from "../repository/modules/UserModule";
@@ -45,7 +45,7 @@ export default defineNuxtPlugin(() => {
         },
     });
 
-    const modules: IServerApiInterface = {
+    const modules: IServerApi = {
         unit: new UnitModule(apiFetcher),
         user: new UserModule(apiFetcher),
         quiz: new QuizModule(apiFetcher),

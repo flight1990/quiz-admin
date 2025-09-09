@@ -1,5 +1,5 @@
 import {reactive, type Ref, ref} from "vue";
-import type {IServerApiInterface} from "../types/IServerApiInterface";
+import type {IServerApi} from "../types/IServerApi";
 import {useNuxtApp} from "nuxt/app";
 import {type OptionType} from "../types/moduls/OptionType";
 
@@ -10,7 +10,7 @@ interface IUseOption {
 }
 
 export const useOption = (): IUseOption => {
-    const {$serverApi}: { $serverApi: IServerApiInterface } = useNuxtApp();
+    const {$serverApi}: { $serverApi: IServerApi } = useNuxtApp();
 
     const loading = ref<boolean>(false)
     const options = ref<OptionType[]>([])

@@ -1,5 +1,5 @@
 import {type Ref, ref} from "vue";
-import type {IServerApiInterface} from "../types/IServerApiInterface";
+import type {IServerApi} from "../types/IServerApi";
 import {useNuxtApp} from "nuxt/app";
 import {type QuizType} from "../types/moduls/QuizType";
 
@@ -10,7 +10,7 @@ interface IUseQuiz {
 }
 
 export const useQuiz = (): IUseQuiz => {
-    const {$serverApi}: { $serverApi: IServerApiInterface } = useNuxtApp();
+    const {$serverApi}: { $serverApi: IServerApi } = useNuxtApp();
 
     const loading = ref<boolean>(false)
     const quizzes = ref<QuizType[]>([])

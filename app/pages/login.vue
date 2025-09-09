@@ -2,13 +2,11 @@
 import TheForm from "../components/TheForm.vue";
 import {reactive} from "vue";
 import {useToken} from "../composables/useToken";
+import type {LoginFormType} from "../types/forms/LoginFormType";
 
 const {processing, login} = useToken()
 
-const payload = reactive<{
-  username: string
-  password: string
-}>({
+const payload = reactive<LoginFormType>({
   username: '',
   password: ''
 })

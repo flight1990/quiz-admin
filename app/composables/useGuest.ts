@@ -1,5 +1,5 @@
 import {reactive, type Ref, ref} from "vue";
-import type {IServerApiInterface} from "../types/IServerApiInterface";
+import type {IServerApi} from "../types/IServerApi";
 import {useNuxtApp} from "nuxt/app";
 import {type GuestUserType} from "../types/moduls/GuestUserType";
 
@@ -10,7 +10,7 @@ interface IUseGuest {
 }
 
 export const useGuest = (): IUseGuest => {
-    const {$serverApi}: { $serverApi: IServerApiInterface } = useNuxtApp();
+    const {$serverApi}: { $serverApi: IServerApi } = useNuxtApp();
 
     const loading = ref<boolean>(false)
     const guestUsers = ref<GuestUserType[]>([])

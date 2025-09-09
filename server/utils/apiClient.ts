@@ -1,5 +1,5 @@
 import { $fetch } from "ofetch";
-import { getCookie, createError, H3Event } from "h3";
+import { getCookie, H3Event } from "h3";
 
 export const apiClient = async <T>(
     event: H3Event,

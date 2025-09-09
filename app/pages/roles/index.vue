@@ -4,7 +4,7 @@ import {reactive, ref} from "vue";
 import type {RoleType} from "../../types/moduls/RoleType";
 
 import {useNuxtApp} from "nuxt/app";
-import {type IServerApiInterface} from "../../types/IServerApiInterface";
+import {type IServerApi} from "../../types/IServerApi";
 import {definePageMeta} from "../../../.nuxt/imports";
 
 definePageMeta({
@@ -28,7 +28,7 @@ const params = reactive({
   with: 'permissions'
 })
 
-const {$serverApi}: { $serverApi: IServerApiInterface} = useNuxtApp()
+const {$serverApi}: { $serverApi: IServerApi} = useNuxtApp()
 
 const getRoles = async () => {
   try {

@@ -1,6 +1,6 @@
 import {type Ref, ref} from "vue";
 import {type UnitType} from "../types/moduls/UnitType";
-import type {IServerApiInterface} from "../types/IServerApiInterface";
+import type {IServerApi} from "../types/IServerApi";
 import {useNuxtApp} from "nuxt/app";
 
 interface IUseUnit {
@@ -10,7 +10,7 @@ interface IUseUnit {
 }
 
 export const useUnit = (): IUseUnit => {
-    const {$serverApi}: { $serverApi: IServerApiInterface } = useNuxtApp();
+    const {$serverApi}: { $serverApi: IServerApi } = useNuxtApp();
 
     const loading = ref<boolean>(false)
     const units = ref<UnitType[]>([])

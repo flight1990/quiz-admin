@@ -8,7 +8,7 @@ import AnswerModule from "../repository/modules/AnswerModule";
 import GuestUserModule from "../repository/modules/GuestUserModule";
 import TokenModule from "../repository/modules/TokenModule";
 
-export interface IServerApiInterface {
+export interface IServerApi {
     unit: UnitModule
     user: UserModule
     quiz: QuizModule
