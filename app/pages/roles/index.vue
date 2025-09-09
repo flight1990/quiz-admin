@@ -2,7 +2,7 @@
 import TheTableWrapper from "../../components/TheTableWrapper.vue";
 import {reactive, ref} from "vue";
 import type {RoleType} from "../../types/moduls/RoleType";
-import type {IApiInterface} from "../../types/IApiInterface";
+
 import {useNuxtApp} from "nuxt/app";
 import {type IServerApiInterface} from "../../types/IServerApiInterface";
 import {definePageMeta} from "../../../.nuxt/imports";
@@ -28,7 +28,7 @@ const params = reactive({
   with: 'permissions'
 })
 
-const {$serverApi}: {$api: IApiInterface, $serverApi: IServerApiInterface} = useNuxtApp()
+const {$serverApi}: { $serverApi: IServerApiInterface} = useNuxtApp()
 
 const getRoles = async () => {
   try {

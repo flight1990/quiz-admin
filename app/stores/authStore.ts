@@ -24,12 +24,10 @@ export const useAuthStore = defineStore("auth", () => {
 
     const login = (access_token: string, refresh_token: string) => {
         setCookies(access_token, refresh_token, true);
-        navigateTo("/");
     };
 
     const logout = () => {
         setCookies(null, null, false);
-        navigateTo("/login");
     };
 
     return {

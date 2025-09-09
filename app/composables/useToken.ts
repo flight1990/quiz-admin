@@ -1,5 +1,5 @@
 import {type Ref, ref} from "vue";
-import {useNuxtApp} from "nuxt/app";
+import {navigateTo, useNuxtApp} from "nuxt/app";
 import {useAuthStore} from "../stores/authStore";
 import type {TokenType} from "../types/moduls/TokenType";
 import type {IServerApiInterface} from "../types/IServerApiInterface";
@@ -26,6 +26,7 @@ export const useToken = (): IUseToke => {
         try {
             const {access_token, refresh_token}: TokenType = await $serverApi.token.token(payload)
             authStore.login(access_token, refresh_token)
+            navigateTo('/')
         } catch (e) {
             throw e
         } finally {
@@ -52,6 +53,7 @@ export const useToken = (): IUseToke => {
         try {
             await $serverApi.token.logout()
             authStore.logout()
+            navigateTo('/login')
         } catch (e) {
             throw e
         } finally {
