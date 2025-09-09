@@ -10,6 +10,7 @@ export const createApiFetcher = ($fetchInstance: $Fetch, authStore: ReturnType<t
             if (err?.response?.status === 401) {
                 const tokenModule = new TokenModule($fetchInstance);
                 const newTokens = await tokenModule.refresh();
+
                 authStore.login(newTokens.access_token, newTokens.refresh_token);
 
                 return await $fetchInstance<T>(url, {

@@ -7,6 +7,7 @@ import OptionModule from "../repository/modules/OptionModule";
 import AnswerModule from "../repository/modules/AnswerModule";
 import GuestUserModule from "../repository/modules/GuestUserModule";
 import TokenModule from "../repository/modules/TokenModule";
+import ExternalObjectModule from "../repository/modules/ExternalObjectModule";
 
 export interface IServerApi {
     unit: UnitModule
@@ -18,4 +19,5 @@ export interface IServerApi {
     answer: AnswerModule
     guestUser: GuestUserModule
     token: TokenModule
+    externalObject: ExternalObjectModule
 }

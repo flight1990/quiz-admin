@@ -9,23 +9,25 @@ import OptionModule from "../repository/modules/OptionModule";
 import AnswerModule from "../repository/modules/AnswerModule";
 import GuestUserModule from "../repository/modules/GuestUserModule";
 import TokenModule from "../repository/modules/TokenModule";
+import ExternalObjectModule from "../repository/modules/ExternalObjectModule";
 import {useAuthStore} from "../stores/authStore";
 import {createApiFetcher} from "../../server/utils/createApiFetcher";
 
 export default defineNuxtPlugin(() => {
     const authStore = useAuthStore();
-    const apiFetcher = createApiFetcher($fetch, authStore) as $Fetch
+    const backendFetcher = createApiFetcher($fetch, authStore) as $Fetch
 
     const modules: IServerApi = {
-        unit: new UnitModule(apiFetcher),
-        user: new UserModule(apiFetcher),
-        quiz: new QuizModule(apiFetcher),
-        question: new QuestionModule(apiFetcher),
-        role: new RoleModule(apiFetcher),
-        option: new OptionModule(apiFetcher),
-        answer: new AnswerModule(apiFetcher),
-        guestUser: new GuestUserModule(apiFetcher),
-        token: new TokenModule(apiFetcher),
+        unit: new UnitModule(backendFetcher),
+        user: new UserModule(backendFetcher),
+        quiz: new QuizModule(backendFetcher),
+        question: new QuestionModule(backendFetcher),
+        role: new RoleModule(backendFetcher),
+        option: new OptionModule(backendFetcher),
+        answer: new AnswerModule(backendFetcher),
+        guestUser: new GuestUserModule(backendFetcher),
+        token: new TokenModule(backendFetcher),
+        externalObject: new ExternalObjectModule(backendFetcher)
     };
 
     return {
