@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import {ref} from "vue";
 import {GuestUserType} from "../../types/moduls/GuestUserType";
-import TheTableWrapper from "../../components/TheTableWrapper.vue";
+import CustomDataTable from "../../components/CustomDataTable/CustomDataTable.vue";
 
 const headers = [
   {title: 'ID', key: 'id', fixed: true},
@@ -20,14 +20,5 @@ const items = ref<GuestUserType[]>([])
 </script>
 
 <template>
-  <the-table-wrapper v-slot="{search}">
-    <v-data-table
-        :search="search"
-        :headers="headers"
-        :items="items"
-        :loading="loading"
-    >
-
-    </v-data-table>
-  </the-table-wrapper>
+  <custom-data-table :headers="headers" :items="items" :loading="loading" />
 </template>
